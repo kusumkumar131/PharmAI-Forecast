@@ -7,7 +7,7 @@ _backend_dir = os.path.dirname(_current_dir)
 if _backend_dir not in sys.path:
     sys.path.insert(0, _backend_dir)
 
-from fastapi import FastAPI, status
+from fastapi import FastAPI, status, Response
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import logging
@@ -22,11 +22,11 @@ logger = logging.getLogger("pharmacy_main")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Initializing Pharmacy Forecast API...")
-    connected = db_manager.connect()
+    connected = db_manager.connect(max_retries=3, retry_delay=2.0)
     if connected:
-        logger.info("Database connection established.")
+        logger.info("Database connection established and ping verified.")
     else:
-        logger.warning("Database connection failed during startup. Check MongoDB status.")
+        logger.error("Database connection failed during startup. Running in degraded state.")
     yield
     logger.info("Shutting down API...")
     db_manager.close()
@@ -81,19 +81,21 @@ def root():
 @app.get("/health", tags=["Health"])
 @app.get("/api/health", tags=["Health"])
 def health_check():
+    db = get_db()
+    db_connected = db is not None and db_manager.is_connected()
     return {
         "status": "healthy",
+        "database_connected": db_connected,
         "service": "Pharmacy Forecasting & Inventory API",
         "environment": settings.ENVIRONMENT
     }
 
 @app.get("/health/db", tags=["Health"])
 @app.get("/api/health/db", tags=["Health"])
-def database_health():
+def database_health(response: Response):
     try:
         db = get_db()
-        if db is not None:
-            db.command("ping")
+        if db is not None and db_manager.is_connected():
             collections = db.list_collection_names()
             return {
                 "status": "connected",
@@ -101,9 +103,19 @@ def database_health():
                 "collections_count": len(collections),
                 "collections": collections
             }
-        return {"status": "disconnected", "error": "Database handle is None"}
+        response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
+        return {
+            "status": "disconnected",
+            "database": settings.DATABASE_NAME,
+            "error": "MongoDB ping check failed or database is not reachable"
+        }
     except Exception as e:
-        return {"status": "error", "detail": str(e)}
+        response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
+        return {
+            "status": "error",
+            "database": settings.DATABASE_NAME,
+            "detail": str(e)
+        }
 
 if __name__ == "__main__":
     import uvicorn

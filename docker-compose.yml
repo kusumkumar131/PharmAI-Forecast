@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: pharmacy_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - pharmacy_network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: pharmacy_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://mongo:27017
+      - DATABASE_NAME=pharmacy_forecasting
+      - ENVIRONMENT=production
+      - SECRET_KEY=pharmacy_secret_key_production_grade_jwt_token_2026_super_secure
+    depends_on:
+      - mongo
+    networks:
+      - pharmacy_network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: pharmacy_frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - pharmacy_network
+
+networks:
+  pharmacy_network:
+    driver: bridge
+
+volumes:
+  mongo_data:

@@ -1,0 +1,330 @@
+{
+  "M01AB": {
+    "Baseline_30d_MA": {
+      "MAE": 2.248,
+      "RMSE": 2.899,
+      "WAPE_percent": 41.64
+    },
+    "Ridge_Regression": {
+      "MAE": 2.21,
+      "RMSE": 2.844,
+      "WAPE_percent": 40.93
+    },
+    "Random_Forest": {
+      "MAE": 2.242,
+      "RMSE": 2.895,
+      "WAPE_percent": 41.52
+    },
+    "XGBoost": {
+      "MAE": 2.274,
+      "RMSE": 2.891,
+      "WAPE_percent": 42.11
+    },
+    "best_model": "Ridge_Regression",
+    "feature_names": [
+      "day_of_week",
+      "day_of_month",
+      "month",
+      "year",
+      "quarter",
+      "is_weekend",
+      "is_month_end",
+      "M01AB_lag_1",
+      "M01AB_lag_7",
+      "M01AB_lag_14",
+      "M01AB_lag_30",
+      "M01AB_rolling_mean_7",
+      "M01AB_rolling_mean_14",
+      "M01AB_rolling_mean_30",
+      "M01AB_rolling_std_7",
+      "M01AB_rolling_std_30"
+    ]
+  },
+  "M01AE": {
+    "Baseline_30d_MA": {
+      "MAE": 1.761,
+      "RMSE": 2.3,
+      "WAPE_percent": 45.64
+    },
+    "Ridge_Regression": {
+      "MAE": 1.652,
+      "RMSE": 2.168,
+      "WAPE_percent": 42.8
+    },
+    "Random_Forest": {
+      "MAE": 1.722,
+      "RMSE": 2.23,
+      "WAPE_percent": 44.61
+    },
+    "XGBoost": {
+      "MAE": 1.736,
+      "RMSE": 2.24,
+      "WAPE_percent": 44.98
+    },
+    "best_model": "Ridge_Regression",
+    "feature_names": [
+      "day_of_week",
+      "day_of_month",
+      "month",
+      "year",
+      "quarter",
+      "is_weekend",
+      "is_month_end",
+      "M01AE_lag_1",
+      "M01AE_lag_7",
+      "M01AE_lag_14",
+      "M01AE_lag_30",
+      "M01AE_rolling_mean_7",
+      "M01AE_rolling_mean_14",
+      "M01AE_rolling_mean_30",
+      "M01AE_rolling_std_7",
+      "M01AE_rolling_std_30"
+    ]
+  },
+  "N02BA": {
+    "Baseline_30d_MA": {
+      "MAE": 1.5,
+      "RMSE": 1.932,
+      "WAPE_percent": 47.91
+    },
+    "Ridge_Regression": {
+      "MAE": 1.475,
+      "RMSE": 1.916,
+      "WAPE_percent": 47.12
+    },
+    "Random_Forest": {
+      "MAE": 1.524,
+      "RMSE": 1.936,
+      "WAPE_percent": 48.66
+    },
+    "XGBoost": {
+      "MAE": 1.532,
+      "RMSE": 1.974,
+      "WAPE_percent": 48.94
+    },
+    "best_model": "Ridge_Regression",
+    "feature_names": [
+      "day_of_week",
+      "day_of_month",
+      "month",
+      "year",
+      "quarter",
+      "is_weekend",
+      "is_month_end",
+      "N02BA_lag_1",
+      "N02BA_lag_7",
+      "N02BA_lag_14",
+      "N02BA_lag_30",
+      "N02BA_rolling_mean_7",
+      "N02BA_rolling_mean_14",
+      "N02BA_rolling_mean_30",
+      "N02BA_rolling_std_7",
+      "N02BA_rolling_std_30"
+    ]
+  },
+  "N02BE": {
+    "Baseline_30d_MA": {
+      "MAE": 9.836,
+      "RMSE": 13.432,
+      "WAPE_percent": 34.62
+    },
+    "Ridge_Regression": {
+      "MAE": 8.783,
+      "RMSE": 11.766,
+      "WAPE_percent": 30.92
+    },
+    "Random_Forest": {
+      "MAE": 8.732,
+      "RMSE": 11.698,
+      "WAPE_percent": 30.74
+    },
+    "XGBoost": {
+      "MAE": 8.907,
+      "RMSE": 12.199,
+      "WAPE_percent": 31.36
+    },
+    "best_model": "Random_Forest",
+    "feature_names": [
+      "day_of_week",
+      "day_of_month",
+      "month",
+      "year",
+      "quarter",
+      "is_weekend",
+      "is_month_end",
+      "N02BE_lag_1",
+      "N02BE_lag_7",
+      "N02BE_lag_14",
+      "N02BE_lag_30",
+      "N02BE_rolling_mean_7",
+      "N02BE_rolling_mean_14",
+      "N02BE_rolling_mean_30",
+      "N02BE_rolling_std_7",
+      "N02BE_rolling_std_30"
+    ]
+  },
+  "N05B": {
+    "Baseline_30d_MA": {
+      "MAE": 3.324,
+      "RMSE": 4.257,
+      "WAPE_percent": 38.82
+    },
+    "Ridge_Regression": {
+      "MAE": 3.177,
+      "RMSE": 4.152,
+      "WAPE_percent": 37.11
+    },
+    "Random_Forest": {
+      "MAE": 3.219,
+      "RMSE": 4.185,
+      "WAPE_percent": 37.61
+    },
+    "XGBoost": {
+      "MAE": 3.211,
+      "RMSE": 4.192,
+      "WAPE_percent": 37.5
+    },
+    "best_model": "Ridge_Regression",
+    "feature_names": [
+      "day_of_week",
+      "day_of_month",
+      "month",
+      "year",
+      "quarter",
+      "is_weekend",
+      "is_month_end",
+      "N05B_lag_1",
+      "N05B_lag_7",
+      "N05B_lag_14",
+      "N05B_lag_30",
+      "N05B_rolling_mean_7",
+      "N05B_rolling_mean_14",
+      "N05B_rolling_mean_30",
+      "N05B_rolling_std_7",
+      "N05B_rolling_std_30"
+    ]
+  },
+  "N05C": {
+    "Baseline_30d_MA": {
+      "MAE": 0.877,
+      "RMSE": 1.126,
+      "WAPE_percent": 125.78
+    },
+    "Ridge_Regression": {
+      "MAE": 0.858,
+      "RMSE": 1.113,
+      "WAPE_percent": 123.0
+    },
+    "Random_Forest": {
+      "MAE": 0.819,
+      "RMSE": 1.113,
+      "WAPE_percent": 117.35
+    },
+    "XGBoost": {
+      "MAE": 0.812,
+      "RMSE": 1.114,
+      "WAPE_percent": 116.44
+    },
+    "best_model": "XGBoost",
+    "feature_names": [
+      "day_of_week",
+      "day_of_month",
+      "month",
+      "year",
+      "quarter",
+      "is_weekend",
+      "is_month_end",
+      "N05C_lag_1",
+      "N05C_lag_7",
+      "N05C_lag_14",
+      "N05C_lag_30",
+      "N05C_rolling_mean_7",
+      "N05C_rolling_mean_14",
+      "N05C_rolling_mean_30",
+      "N05C_rolling_std_7",
+      "N05C_rolling_std_30"
+    ]
+  },
+  "R03": {
+    "Baseline_30d_MA": {
+      "MAE": 5.574,
+      "RMSE": 7.825,
+      "WAPE_percent": 80.46
+    },
+    "Ridge_Regression": {
+      "MAE": 5.524,
+      "RMSE": 7.711,
+      "WAPE_percent": 79.74
+    },
+    "Random_Forest": {
+      "MAE": 5.684,
+      "RMSE": 7.893,
+      "WAPE_percent": 82.04
+    },
+    "XGBoost": {
+      "MAE": 5.745,
+      "RMSE": 8.0,
+      "WAPE_percent": 82.92
+    },
+    "best_model": "Ridge_Regression",
+    "feature_names": [
+      "day_of_week",
+      "day_of_month",
+      "month",
+      "year",
+      "quarter",
+      "is_weekend",
+      "is_month_end",
+      "R03_lag_1",
+      "R03_lag_7",
+      "R03_lag_14",
+      "R03_lag_30",
+      "R03_rolling_mean_7",
+      "R03_rolling_mean_14",
+      "R03_rolling_mean_30",
+      "R03_rolling_std_7",
+      "R03_rolling_std_30"
+    ]
+  },
+  "R06": {
+    "Baseline_30d_MA": {
+      "MAE": 1.834,
+      "RMSE": 2.409,
+      "WAPE_percent": 48.0
+    },
+    "Ridge_Regression": {
+      "MAE": 1.772,
+      "RMSE": 2.35,
+      "WAPE_percent": 46.38
+    },
+    "Random_Forest": {
+      "MAE": 1.767,
+      "RMSE": 2.348,
+      "WAPE_percent": 46.25
+    },
+    "XGBoost": {
+      "MAE": 1.797,
+      "RMSE": 2.365,
+      "WAPE_percent": 47.02
+    },
+    "best_model": "Random_Forest",
+    "feature_names": [
+      "day_of_week",
+      "day_of_month",
+      "month",
+      "year",
+      "quarter",
+      "is_weekend",
+      "is_month_end",
+      "R06_lag_1",
+      "R06_lag_7",
+      "R06_lag_14",
+      "R06_lag_30",
+      "R06_rolling_mean_7",
+      "R06_rolling_mean_14",
+      "R06_rolling_mean_30",
+      "R06_rolling_std_7",
+      "R06_rolling_std_30"
+    ]
+  }
+}

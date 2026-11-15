@@ -11,6 +11,11 @@ from app.main import app
 
 client = TestClient(app)
 
+def test_root_endpoint():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "project" in response.json()
+
 def test_health_check():
     response = client.get("/api/health")
     assert response.status_code == 200
@@ -21,6 +26,23 @@ def test_root_health():
     response = client.get("/health")
     assert response.status_code == 200
     assert response.json()["status"] == "healthy"
+
+def test_health_db_endpoint():
+    response = client.get("/health/db")
+    assert response.status_code == 200
+    assert response.json()["status"] == "connected"
+
+def test_swagger_docs():
+    response = client.get("/docs")
+    assert response.status_code == 200
+    assert "swagger-ui" in response.text.lower() or "html" in response.headers.get("content-type", "").lower()
+
+def test_openapi_json():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    data = response.json()
+    assert "openapi" in data
+    assert "paths" in data
 
 def test_database_health():
     response = client.get("/api/health/db")

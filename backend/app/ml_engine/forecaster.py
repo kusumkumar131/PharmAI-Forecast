@@ -14,9 +14,13 @@ class MLForecaster:
 
     @classmethod
     def load_artifacts(cls):
-        """Loads trained model artifacts and benchmark metrics from ml/saved_models."""
-        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-        models_dir = os.path.join(base_dir, "ml", "saved_models")
+        """Loads trained model artifacts and benchmark metrics."""
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        local_models_dir = os.path.join(current_dir, "saved_models")
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
+        root_models_dir = os.path.join(base_dir, "ml", "saved_models")
+        
+        models_dir = local_models_dir if os.path.exists(local_models_dir) else root_models_dir
         
         # Load metrics
         metrics_file = os.path.join(models_dir, "model_metrics.json")
@@ -37,7 +41,9 @@ class MLForecaster:
                 print(f"Error loading model {mf}: {e}")
 
         # Load feature baseline
-        feat_path = os.path.join(base_dir, "dataset", "processed", "engineered_features.csv")
+        local_feat_path = os.path.join(current_dir, "data", "engineered_features.csv")
+        root_feat_path = os.path.join(base_dir, "dataset", "processed", "engineered_features.csv")
+        feat_path = local_feat_path if os.path.exists(local_feat_path) else root_feat_path
         if os.path.exists(feat_path):
             cls._features_df = pd.read_csv(feat_path, index_col=0)
             cls._features_df.index = pd.to_datetime(cls._features_df.index)

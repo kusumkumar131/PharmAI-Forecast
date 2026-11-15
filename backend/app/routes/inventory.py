@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from datetime import datetime
 import math
 from typing import Optional, List
-from backend.app.database.connection import get_db
-from backend.app.ml_engine.forecaster import MLForecaster
+from app.database.connection import get_db
+from app.ml_engine.forecaster import MLForecaster
 
 router = APIRouter(prefix="/inventory", tags=["Inventory Optimization & Restocking"])
 

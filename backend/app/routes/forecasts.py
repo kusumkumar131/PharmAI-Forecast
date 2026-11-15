@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from datetime import datetime
 import uuid
 from typing import Optional
-from backend.app.schemas.schemas import ForecastRequest
-from backend.app.database.connection import get_db
-from backend.app.ml_engine.forecaster import MLForecaster
+from app.schemas.schemas import ForecastRequest
+from app.database.connection import get_db
+from app.ml_engine.forecaster import MLForecaster
 
 router = APIRouter(prefix="/forecasts", tags=["Demand Forecasting"])
 

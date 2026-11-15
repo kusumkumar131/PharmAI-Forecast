@@ -1,8 +1,8 @@
 import json
 import os
 from datetime import datetime, timedelta
-from backend.app.database.connection import db_manager, get_db
-from backend.app.services.auth_service import hash_password
+from app.database.connection import db_manager, get_db
+from app.services.auth_service import hash_password
 
 def seed_database():
     print("Initiating database seeding...")

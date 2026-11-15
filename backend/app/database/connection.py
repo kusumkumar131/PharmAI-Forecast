@@ -1,7 +1,7 @@
 from pymongo import MongoClient, ASCENDING, DESCENDING
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 import logging
-from backend.app.config import settings
+from app.config import settings
 
 logger = logging.getLogger("pharmacy_app")
 logging.basicConfig(level=logging.INFO)
@@ -12,7 +12,12 @@ class DatabaseManager:
 
     def connect(self):
         try:
-            logger.info(f"Connecting to MongoDB at {settings.MONGODB_URL}...")
+            masked_url = settings.MONGODB_URL
+            if "@" in masked_url and "://" in masked_url:
+                prefix, rest = masked_url.split("://", 1)
+                creds, host = rest.split("@", 1)
+                masked_url = f"{prefix}://***:***@{host}"
+            logger.info(f"Connecting to MongoDB at {masked_url}...")
             self.client = MongoClient(settings.MONGODB_URL, serverSelectionTimeoutMS=5000)
             # Verify server is responsive
             self.client.admin.command('ping')

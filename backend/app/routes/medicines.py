@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from datetime import datetime
 from typing import List, Optional
-from backend.app.schemas.schemas import MedicineCreate, MedicineUpdate
-from backend.app.database.connection import get_db
+from app.schemas.schemas import MedicineCreate, MedicineUpdate
+from app.database.connection import get_db
 
 router = APIRouter(prefix="/medicines", tags=["Medicines"])
 

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from datetime import datetime
 from typing import Optional, List
-from backend.app.schemas.schemas import SaleCreate
-from backend.app.database.connection import get_db
+from app.schemas.schemas import SaleCreate
+from app.database.connection import get_db
 
 router = APIRouter(prefix="/sales", tags=["Sales"])
 

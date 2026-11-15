@@ -2,7 +2,7 @@ import bcrypt
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from typing import Optional, Dict, Any
-from backend.app.config import settings
+from app.config import settings
 
 def hash_password(password: str) -> str:
     """Hash a password safely using bcrypt directly."""

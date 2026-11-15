@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     MONGODB_URL: str = "mongodb://localhost:27017"
     DATABASE_NAME: str = "pharmacy_forecasting"
     ENVIRONMENT: str = "development"
-    CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173"
+    CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,https://pharmaai-eta.vercel.app"
 
     @property
     def cors_origins_list(self) -> List[str]:

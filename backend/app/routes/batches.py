@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from datetime import datetime
 from typing import Optional, List
-from backend.app.schemas.schemas import BatchCreate, BatchUpdate
-from backend.app.database.connection import get_db
-from ml.expiry_prediction.risk_engine import ExpiryRiskEngine
+from app.schemas.schemas import BatchCreate, BatchUpdate
+from app.database.connection import get_db
+from app.ml_engine.risk_engine import ExpiryRiskEngine
 
 router = APIRouter(prefix="/batches", tags=["Batches"])
 

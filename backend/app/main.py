@@ -1,11 +1,20 @@
+import sys
+import os
+
+# Ensure backend directory is in sys.path
+_current_dir = os.path.dirname(os.path.abspath(__file__))
+_backend_dir = os.path.dirname(_current_dir)
+if _backend_dir not in sys.path:
+    sys.path.insert(0, _backend_dir)
+
 from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import logging
 
-from backend.app.config import settings
-from backend.app.database.connection import db_manager, get_db
-from backend.app.routes import auth, medicines, batches, sales, forecasts, expiry, inventory, reports
+from app.config import settings
+from app.database.connection import db_manager, get_db
+from app.routes import auth, medicines, batches, sales, forecasts, expiry, inventory, reports
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("pharmacy_main")
@@ -30,9 +39,20 @@ app = FastAPI(
 )
 
 # CORS configuration
+allowed_origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:5173",
+    "https://pharmaai-eta.vercel.app",
+]
+for origin in settings.cors_origins_list:
+    if origin not in allowed_origins:
+        allowed_origins.append(origin)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"] if settings.ENVIRONMENT == "development" else settings.cors_origins_list,
+    allow_origins=["*"] if settings.ENVIRONMENT == "development" else allowed_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -58,6 +78,7 @@ def root():
         "api_prefix": settings.API_V1_STR
     }
 
+@app.get("/health", tags=["Health"])
 @app.get("/api/health", tags=["Health"])
 def health_check():
     return {
@@ -66,6 +87,7 @@ def health_check():
         "environment": settings.ENVIRONMENT
     }
 
+@app.get("/health/db", tags=["Health"])
 @app.get("/api/health/db", tags=["Health"])
 def database_health():
     try:
@@ -85,4 +107,4 @@ def database_health():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

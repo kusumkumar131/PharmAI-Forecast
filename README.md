@@ -85,7 +85,7 @@ Pharmacy-Forecasting/
 │   │   └── App.jsx
 │   └── package.json
 ├── docs/
-│   └── TECHNICAL_REPORT.md             # Detailed assessment report (100 marks)
+│   └── TECHNICAL_REPORT.md             # Comprehensive technical engineering report
 ├── docker-compose.yml
 ├── Dockerfile.backend
 └── Dockerfile.frontend
@@ -194,16 +194,3 @@ docker-compose up --build -d
 - Frontend: `http://localhost:3000`
 - Backend API: `http://localhost:8000`
 - MongoDB: `localhost:27017`
-
----
-
-## 8. Rubric Compliance & Assessment Evidence
-
-| Rubric Area | Mark Weight | Evidence in Repository |
-|:---|:---:|:---|
-| **Problem Framing & EDA** | 15 Marks | Clear targets/horizons, real Kaggle pharma dataset, zero-day handling, executed `ml/notebooks/01_data_exploration.ipynb`. |
-| **Baseline & Models** | 25 Marks | 30d MA baseline vs Ridge vs Random Forest vs XGBoost, lag/rolling features, `train_models.py`. |
-| **Validation & Metrics** | 20 Marks | Strict chronological split (2014–18 train vs 2019 test), zero leakage, MAE/RMSE/WAPE metrics, residual diagnostics. |
-| **Inference Interface** | 15 Marks | Dynamic Joblib model loading in `forecaster.py`, real predictions, responsive 8-page React UI. |
-| **Explainability & Responsibility** | 10 Marks | Explicit decision-support disclaimers, human pharmacist in the loop, bias/privacy documentation. |
-| **Reproducibility & Tests** | 15 Marks | Repeatable training pipeline, 8/8 passing automated tests, `docs/TECHNICAL_REPORT.md`, Docker setup. |
